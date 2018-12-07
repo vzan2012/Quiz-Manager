@@ -1,0 +1,31 @@
+@startuml
+== run evaluation ==
+Participant Browser
+Participant JS
+Participant View
+Participant Controller
+Participant Model
+Participant DBMS
+
+Browser -> Controller: GET evaluation-{id}
+Controller -> Model:  Evaluation::get($id)
+Model -> DBMS: SELECT ... FROM evaluation JOIN sql_quiz JOIN quiz_db
+DBMS -> Model: rows
+Controller -> View: evaluation_view.php must send the trainee_id (taken in the session)
+View -> Browser: diagram, title, scheduled_at, ending_at + start button
+== start ==
+Browser -> Controller: POST sheet-by-{traineeId}-on{evalId}
+Controller -> Model:  Sheet::update($traineeId, $evalId)
+Model -> DBMS: UPDATE sheet ...
+Controller -> Model: ...getQuestions($quizId)
+Controller -> View: sheet-student.php
+View -> Browser: list of questions with form
+== answer ==
+JS -> Controller: PUT answer-by-{traineeId}-on-{questionId}-for-{evalId}
+Controller -> Model: SqlAnswer::update($traineeId, $questionId, $evalId, $answer)
+Model -> DBMS: UPDATE sql_answer SET ... WHERE ...
+Controller -> JS: status + message
+JS -> Browser: feedback
+== at any moment ==
+Browser -> Controller: my-evaluations
+@enduml
