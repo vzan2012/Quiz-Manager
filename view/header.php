@@ -3,6 +3,7 @@
 /** Display error of key $key if there is one, in a $tag element
  * If $tag is not set, it defaults to span.
  */
+// Display Error
 function display_error($key, $tag = "span") {
    // Use the variable set outside the function
    global $errors;
