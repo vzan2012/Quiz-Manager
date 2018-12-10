@@ -12,4 +12,13 @@ body {
 	border-radius: 0;
 }
 
+.login-error {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+	position: absolute;
+	right: 0;	
+}
+
+
 /*Custom Styles - End*/

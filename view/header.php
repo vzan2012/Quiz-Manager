@@ -7,7 +7,7 @@ function display_error($key, $tag = "span") {
    // Use the variable set outside the function
    global $errors;
    if (isset($errors[$key])) {
-      print "<$tag class='error'>$errors[$key]</$tag>";
+      print "<$tag class='alert alert-danger fadeOut login-error' role='alert'>$errors[$key]</$tag>";
    }
 }
 ?>
@@ -47,10 +47,9 @@ function display_error($key, $tag = "span") {
          <input class="form-control" type="text" name="login" value="<?= $login ?>" placeholder="Your email" title="Your email"/>
          <input class="form-control" type = "password" name = "password" placeholder="Your password" title="Your password"/>
          <button class="btn btn-primary"type="submit">Connect</button>
-         <?= display_error("login_form", "div") ?>
+         <?= display_error("login_form", "div") ?>        
       </form>
       <?php
    }
    ?>
 </nav>
-<hr/>

@@ -1,35 +1,35 @@
 <?php
 require_once("DB.php");
 
-/** Access to the user table.
+/** Access to the person table.
  * Put here the methods like getBySomeCriteriaSEarch */
-class User {
+class Member {
 
-   /** Get user data for id $user_id
-    * @param int $user_id id of the user to be retrieved
+   /** Get member data for id $member_id
+    * @param int $member_id id of the member to be retrieved
     * @return associative_array table row
     */
-   public static function get($user_id) {
+   public static function get($member_id) {
       $db = DB::getConnection();
       $sql = "SELECT *
-              FROM user
-              WHERE user_id = :user_id";
+              FROM member
+              WHERE member_id = :member_id";
       $stmt = $db->prepare($sql);
-      $stmt->bindValue(":user_id", $user_id);
+      $stmt->bindValue(":member_id", $member_id);
       $ok = $stmt->execute();
       return $stmt->fetch(PDO::FETCH_ASSOC);
    }
 
-   public static function getByLoginPassword($username, $password) {
+   public static function getByLoginPassword($login, $password) {
       $db = DB::getConnection();
       // We should use an encoded password, like PASSWORD(password)
       // in the WHERE clause
       $sql = "SELECT *
-            FROM user
-            WHERE email = :email AND pwd = :pwd";
+            FROM member
+            WHERE email = :email AND password = :password";
       $stmt = $db->prepare($sql);
-      $stmt->bindValue(":email", $username);
-      $stmt->bindValue(":pwd", $password);
+      $stmt->bindValue(":email", $login);
+      $stmt->bindValue(":password", $password);
       $ok = $stmt->execute();
       return $stmt->fetch(PDO::FETCH_ASSOC);
    }
