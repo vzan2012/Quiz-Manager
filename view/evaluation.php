@@ -15,7 +15,7 @@ $errors = array();
 
 // Get id parameter
 $evaluation_id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
-if ($evalution_id === null // no value
+if ($evaluation_id === null // no value
   || $evaluation_id == false) { // not an integer
   $errors["id"] = "id parameter must be set and integer (eg: evaluation-1)";
 }
@@ -25,5 +25,7 @@ else {
   // Recuperer le produit de id demande
   $evaluation = Evaluation::get($evaluation_id);
 }
+
+
 // Sent to the view
 require_once("../view/evaluation_view.php");
