@@ -8,3 +8,4 @@ RewriteEngine on
 
 # Rewriting rules (use regular expressions)
 RewriteRule ^sign_in$ login.php
+RewriteRule ^sign_out$ login.php?action=disconnect

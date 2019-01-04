@@ -29,6 +29,7 @@ if ($action == "disconnect") {
          $_SESSION["user_sql_skills"] = $user;
          // Redirect to home page or previous page, if defined
          $url = (isset($_SESSION["page"])) ? $_SESSION["page"] : "./";
+         require_once("../view/sheet.php");
          header("Location: $url");
       } else {
          $errors["login_form"] = "Invalid password or user unknown";
