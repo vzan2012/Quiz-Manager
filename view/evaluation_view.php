@@ -19,129 +19,21 @@ require_once("../model/DB.php");
 <html>
 <head>
    <link rel="stylesheet" type="text/css" href="static/auction.css"/>
-   <title>Quiz Manager - <?= $evaluation["diagram"] ?> (id <?= $evaluation["evaluation_id"] ?>)</title>
+   <title>Quiz Manager - <?php echo $evaluation["diagram_path"] ?> (id <?= $evaluation["evaluation_id"] ?>)</title>
    <script src="static/jquery-1.11.2.min.js"></script>
-   <script>
-         // What to do when page loading is complete
-         $(document).ready(function () {
-            // Reaction to a click on the bidButton button
-            $("#bidForm").submit(function (event) {
-               $.ajax({
-                  type: "POST",
-                  url: "evaluation-<?= $evaluation["evaluation_id"] ?>",
-                  // Body parameters to send
-                  data: {
-                     amount: $("#bidAmount").val()
-                  },
-                  // What to do in case of failure (400-599)
-                  error: function (xhr, string) {
-                     msg = null;
-                     switch (xhr.responseText) {
-                        case "<?= DB::BID_AFTER_DEADLINE ?>":
-                        msg = "Bid after deadline";
-                        break;
-                        case "<?= DB::BID_BEFORE_ENTRY_DATE ?>":
-                        msg = "Bid before entry date";
-                        break;
-                        case "<?= DB::BID_BY_THE_SELLER ?>": // Normally not possible
-                        msg = "Bid by the seller himself";
-                        break;
-                        case "<?= DB::BID_GREATER_THAN_FOLLOWING_ONES ?>":
-                        msg = "Bid greater then folllowing ones";
-                        break;
-                        case "<?= DB::BID_TOO_SMALL ?>":
-                        msg = "Bid must be higher than the previous ones";
-                        break;
-                        default:
-                        msg = "Erreur : " + xhr.responseText;
-                     }
-                     $("#bidMessage").html(msg).addClass("error");
-                  },
-                  // What to do if success (200-299)
-                  success: function (data) {
-                     // Reload the page from the server
-                     location.reload(true);
-                  }
-               });
-            });
-         })
-      </script>
+  
    </head>
    <body>
-      <?php
-      // Header shared by all pages
-      require_once("header.php");
-      if (isset($errors["id"])) {
-         ?>
-         <h1><?= $errors["id"] ?></h1>
-         <p>Usage example:
-            <a href="product-1">product-1</a> (where 1 is the product id).
-         </p>
-         <?php
-      } else {
-         if ($evaluation == null) {
-            die("<h1>Evaluation not found</h1>");
-         } else {
-            ?>
-            <h1><?= $evaluation["description"] ?>
-            (<?= $evaluation["category"] ?>)</h1>
-            <p>
-               Proposed as <?= $evaluation["quiz_id"] ?> € 
-               by <a href="member-<?= $evaluation['quiz_id'] ?>"><?= $evaluation["quiz_id"] ?>
-               <?= strtoupper($evaluation["quiz_id"]) ?></a>.
-               <br/>
-               From <?= date("d/m/Y H:i", strtotime($evaluation["entry_date"])) ?>
-               to <?= date("d/m/Y H:i", strtotime($evaluation["deadline"])) ?>
-            </p>
 
-            <?php
-            if (isset($_SESSION["user"])) {
-               if ($_SESSION["user"]["member_id"] != $evaluation["quiz_id"]) { // Allow to bid
-                  ?>
-                  <form method="POST" action="javascript:" id="bidForm">
-                     Amount: <input type="number" step="0.01" id="bidAmount" required="required"/>
-                     <button type="submit" id="bidButton">Place a bid</button>
-                     <div id="bidMessage"></div>
-                  </form>
-                  <?php
-               } else {
-                  ?>
-                  <p>You are the product owner, so you may not place a bid on it</p>
-                  <?php
-               }
-            } else { ?>
-               <p>Sign in to place a bid</p>
-            <?php }
+      <img src="http://<?php echo $_SERVER["SERVER_NAME"] ?>/quiz-manager/pages/<?php echo $evaluation["diagram_path"] ?>" /> <br/>
+      <p style="line-height: 25px;">
+         <strong>Title:</strong>&nbsp;<span><?php echo $evaluation["title"] ?></span><br/>
+         <strong>Scheduled At:</strong>&nbsp;<span><?php echo $evaluation["scheduled_at"] ?></span><br/>
+         <strong>Ending At:</strong>&nbsp;<span><?php echo $evaluation["ending_at"] ?></span><br/>
+      </p>
+      <p>
+         <input type="submit" id="" value="Start" style="padding: 10px 20px; font-size: 15px;" />
+      </p>
+   </body>
 
-            if (count($bids) == 0) {
-               ?>	
-               <h1>No bid on this product</h1>
-               <?php
-            } else {
-               ?>
-               <h2>Bids</h2>
-               <table>
-                  <tr>
-                     <th>Amount</th>
-                     <th>Date</th>
-                     <th>Bidder</th>
-                  </tr>
-                  <?php
-                  foreach ($bids as $bid) {
-                     ?>
-                     <tr>
-                        <td><?= $bid["amount"] ?></td>
-                        <td><?= $bid["effect_time"] ?></td>
-                        <td>
-                           <a href="member-<?= $bid['bidder_id'] ?>"><?= $bid["first_name"] ?>
-                           <?= $bid["name"] ?></a>
-                        </td>
-                     </tr>
-                     <?php
-                  }
-                  ?>
-               </table>
-               <?php
-            }
-         }
-      }
+</html>
