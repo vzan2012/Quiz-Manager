@@ -15,3 +15,4 @@ RewriteRule ^sign_in$ login.php
 RewriteRule ^sign_out$ login.php?action=disconnect
 
 RewriteRule ^evaluation-(\d+)$ evaluation.php?id=$1
+RewriteRule ^sheet-(\d+)$ sheet.php?quizId=$1

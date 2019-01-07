@@ -4,6 +4,7 @@
  * The user interface is minimal.
  */
 session_start();
+
 if (filter_input(INPUT_SERVER, "REQUEST_METHOD") != "POST") {
    $message = "Method not implemented";
    require_once("../view/message.php");
