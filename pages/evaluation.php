@@ -3,6 +3,11 @@
  * GET displays the evaluation. We should forbid other methods.
  */
 session_start();
+
+if(!isset($_SESSION['user_sql_skills'])){
+   header("Location: ./");
+}
+
 // Memorize the page to redirect to it if logging in
 $_SESSION["page"] = $_SERVER["REQUEST_URI"];
 
