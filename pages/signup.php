@@ -46,6 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $password = trim($_POST["password"]);
   }
+  
+  // Call the model
+  require_once("../model/signup_model.php");
+  Signup::createStudent($firstName, $firstName, $email, $password);
+
+} else {
+	// Send to the view
+	require_once("../view/signup_view.php");
 }
 
 function test_input($data) {
@@ -68,6 +76,3 @@ else {
   $evaluation = Evaluation::get($evaluation_id);
 }
 */
-
-// Send to the view
-require_once("../view/signup_view.php");
