@@ -30,8 +30,8 @@ if ($action == "disconnect") {
          $_SESSION["user_sql_skills"] = $user;
          // Redirect to home page or previous page, if defined
          $url = (isset($_SESSION["page"])) ? $_SESSION["page"] : "./";
-         require_once("../view/sheet.php");
-         header("Location: $url");
+         require_once("../view/student_view.php");
+         header("../view/student_view.php");
       } else {
          $errors["login_form"] = "Invalid password or user unknown";
          require_once("../view/index_view.php");
