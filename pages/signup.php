@@ -1,7 +1,8 @@
 <?php
 /** Controller for sign up
  */
-
+// The Evaluation
+$signup = null;
 
 // define variables and set to empty values
 $lastNameErr = $firstNameErr = $emailErr = $passwordErr = "";
@@ -46,15 +47,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $password = trim($_POST["password"]);
   }
-  
-  // Call the model
-  require_once("../model/signup_model.php");
-  Signup::createStudent($firstName, $firstName, $email, $password);
 
-} else {
-	// Send to the view
-	require_once("../view/signup_view.php");
-}
+  require_once("../model/signup_model.php");
+  $signup = Signup::createStudent($firstName, $lastName, $email, $password); 
+
+} 
+
 
 function test_input($data) {
   $data = trim($data);
@@ -62,6 +60,9 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
+
+// Send to the view
+require_once("../view/signup_view.php");
 
 // Get id parameter
 /*$evaluation_id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
