@@ -6,6 +6,11 @@ session_start();
 // Memorize the page to redirect to it if logging in
 $_SESSION["page"] = $_SERVER["REQUEST_URI"];
 
+// Access permitted only if user is logged in
+if(!isset($_SESSION['user_sql_skills'])){
+  header("Location: ./");
+}
+
 // The Sheet
 $sheet = null;
 
@@ -15,7 +20,8 @@ $errors = array();
 
 // Get id parameter
 $evaluation_id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
-$trainee_id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+//$trainee_id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+$trainee_id = $_SESSION["user_sql_skills"]["user_id"];
 
 $quizId = filter_input(INPUT_GET, "quizId", FILTER_VALIDATE_INT);
 

@@ -21,7 +21,7 @@ $quiz["title"] = "Bank Quiz";
 		require_once("header.php");
       ?>
 
-      <div class="container">      
+      <div class="container">  
          <table class="table table-bordered">
             <thead>
                <tr>
