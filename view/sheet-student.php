@@ -8,11 +8,9 @@ require_once("../model/DB.php");
 <head>
    <link rel="stylesheet" type="text/css" href="static/auction.css"/>
    <title>Quiz Manager - List of Questions</title>
-   <script src="static/jquery-1.11.2.min.js"></script>
-      <!-- Bootstrap Styles -->
-	   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-	   <!-- Custom Styles -->
-	   <link rel="stylesheet" href="../pages/static/css/custom-styles.css" />
+
+   <?php include("header_styles.php"); ?>
+
    </head>
    <body>
       <?php
@@ -44,7 +42,11 @@ require_once("../model/DB.php");
                ?>
             </tbody>
          </table>  
-      </div>    
+      </div>
+
+      <?php include("page_scripts.php"); ?>
+
+
    </body>
 
 </html>

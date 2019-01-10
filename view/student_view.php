@@ -9,11 +9,9 @@ $quiz["title"] = "Bank Quiz";
 	<head>
 		<link rel="stylesheet" type="text/css" href="static/auction.css"/>
 		<title>Student View</title>
-		<script src="static/jquery-1.11.2.min.js"></script>
-		<!-- Bootstrap Styles -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-		<!-- Custom Styles -->
-		<link rel="stylesheet" href="../pages/static/css/custom-styles.css" />
+
+      <?php include("header_styles.php"); ?>
+
    </head>
    <body>
 	  <?php
@@ -40,14 +38,6 @@ $quiz["title"] = "Bank Quiz";
       </div>
    </body>
 
-   <!-- Custom Scripts -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-
-   <!-- Bootstrap Scripts -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-   <!-- Custom Scripts -->
-   <script src="../pages/static/js/custom-scripts.js"></script>
-
+   <?php include("page_scripts.php"); ?>
 
 </html>
