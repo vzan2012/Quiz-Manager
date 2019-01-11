@@ -24,7 +24,7 @@ require_once("../model/DB.php");
                <strong>Ending At:</strong>&nbsp;<span><?php echo $evaluation["ending_at"] ?></span><br/>
             </p>
             <p>
-               <input type="submit" id="" value="Start" class="btn btn-lg btn-primary" />
+               <a href="./sheet-1" id="btn-start" class="btn btn-lg btn-primary">Start</a>
             </p>
          </form>
       </div>

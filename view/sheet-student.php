@@ -34,7 +34,7 @@ require_once("../model/DB.php");
                      <td><?= $sh["question_id"] ?></td>
                      <td><?= $sh["question_text"] ?></td>
                      <td>
-                        <textarea name="" id="" cols="35" rows="5"></textarea>
+                        <textarea class="form-control" name="" id="" cols="35" rows="5"></textarea>
                      </td>
                   </tr>
                   <?php
@@ -44,6 +44,10 @@ require_once("../model/DB.php");
          </table>  
       </div>
 
+      <div class="text-center">
+         <input type="submit" value="Submit" class="btn btn-primary" />
+      </div>
+      
       <?php include("page_scripts.php"); ?>
 
 
