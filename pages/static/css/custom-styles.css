@@ -20,5 +20,12 @@ body {
 	right: 0;	
 }
 
+.signup-box {
+	background: #f5f5f5;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 25px;
+}
+
 
 /*Custom Styles - End*/

@@ -6,7 +6,7 @@ Options +Indexes
 # Use url rewriting. BE SURE YOU ENABLE rewrite_module in Apache 
 RewriteEngine on
 
-# Base directory for rewritng: URL OF YOUR POROJECT
+# Base directory for rewriting: URL OF YOUR PROJECT
 RewriteBase /quiz-manager/pages/
 
 # Rewriting rules (use regular expressions)
@@ -15,3 +15,5 @@ RewriteRule ^sign_in$ login.php
 RewriteRule ^sign_out$ login.php?action=disconnect
 
 RewriteRule ^evaluation-(\d+)$ evaluation.php?id=$1
+RewriteRule ^sheet-(\d+)$ sheet.php?quizId=$1
+RewriteRule ^signup$ signup.php
